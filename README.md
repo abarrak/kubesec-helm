@@ -1,6 +1,6 @@
 # Kubesec Helm Chart
 
-[![CI](https://github.com/abarrak/kubesec-helm/actions/workflows/lint.yml/badge.svg)](https://github.com/abarrak/kubesec-helm/actions/workflows/lint.yml/badge.svg)
+[![CI](https://github.com/abarrak/kubesec-helm/actions/workflows/lint.yaml/badge.svg)](https://github.com/abarrak/kubesec-helm/actions/workflows/lint.yaml/badge.svg)
 
 ## Features
 
