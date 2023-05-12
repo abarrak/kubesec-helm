@@ -1,0 +1,68 @@
+## Supports:
+# 1. `server` to run kubesec in standby http server.
+# 2. `job` to run it on demand against supported resources in the cluster on specific namespace.
+# 3. `cron` to run on perodic schedule.
+# Defaults to `server` mode
+##
+mode: server
+
+# Applicable for background modes `job` or `cron` .
+modeOptions:
+  # Defaults to all if empty.
+  targetNamespace: []
+  # Defaults to once daily at 6 AM.
+  schedule: "0 6 * * *"
+
+replicaCount: 1
+
+image:
+  repository: kubesec/kubesec
+  pullPolicy: IfNotPresent
+  tag: latest
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext:
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

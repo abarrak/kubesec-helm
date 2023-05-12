@@ -1,0 +1,12 @@
+apiVersion: v2
+name: kubesec
+description: A Helm chart for kubesec utility. Supports both server and on demand modes.
+
+type: application
+
+version: "1.0.0"
+appVersion: "v2.13.0"
+
+maintainers:
+  - name: Abdullah Barrak
+    url: github.com/abarrak
