@@ -2,7 +2,7 @@
 # 1. `server` to run kubesec in standby http server.
 # 2. `job` to run it on demand against supported resources in the cluster on specific namespace.
 # 3. `cron` to run on perodic schedule.
-# Defaults to `server` mode
+# Defaults to `server` mode.
 ##
 mode: server
 
