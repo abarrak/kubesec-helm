@@ -34,7 +34,7 @@ helm install kubesec-scanner kubesec/kubesec --set mode=cron
 
 ## Support
 
-You can complement the chart with [the UI from here]() to visualize and analyze reports.
+You can complement the chart with [the UI from here](https://github.com/abarrak/kubesec-ui) to visualize and analyze reports.
 
 ## License
 
