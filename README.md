@@ -1,6 +1,7 @@
 # Kubesec Helm Chart
 
 [![CI](https://github.com/abarrak/kubesec-helm/actions/workflows/lint.yaml/badge.svg)](https://github.com/abarrak/kubesec-helm/actions/workflows/lint.yaml/badge.svg)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/kubesec)](https://artifacthub.io/packages/search?repo=kubesec)
 
 ## Features
 
@@ -15,17 +16,20 @@ Supports 3 modes to run the scanner: server, job, and cronjob.
 ## Usage
 
 ```bash
-helm install kubesec ./
+helm repo add kubesec https://abarrak.github.io/kubesec-helm
+helm install kubesec-scanner kubesec/kubesec --version 1.0.0
 ```
 
 To run in job mode (1 time basis):
 
 ```bash
+helm install kubesec-scanner kubesec/kubesec --set mode=job
 ```
 
 To run in cronjob periodically:
 
 ```bash
+helm install kubesec-scanner kubesec/kubesec --set mode=cron
 ```
 
 ## Roadmap
