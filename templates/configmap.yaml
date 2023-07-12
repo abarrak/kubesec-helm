@@ -1,0 +1,22 @@
+{{- if or (eq .Values.mode "job") (eq .Values.mode "cron") -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "kubesec.fullname" . }}
+  labels:
+    {{- include "kubesec.labels" . | nindent 4 }}
+data:
+  SCAN_SCRIPT: |
+    TOKEN=$(cat ${SERVICEACCOUNT}/token);
+    CACERT=${SERVICEACCOUNT}/ca.crt;
+    NAMESPACE={{ .Values.modeOptions.targetNamespace }};
+
+    LIMIT=200;
+    DEPLOYMENT_URL=${APISERVER}/api/v1/deployments?limit=${LIMIT};
+    STS_URL=${APISERVER}/api/v1/statefulsets?limit=${LIMIT};
+    DS_URL=${APISERVER}/api/v1/daeomnsets?limit=${LIMIT};
+
+    curl -s --cacert ${CACERT} --header "Authorization: Bearer $TOKEN" -X GET "DEPLOYMENT_URL" > /tmp/deploy.json;
+    curl -s --cacert ${CACERT} --header "Authorization: Bearer $TOKEN" -X GET "DEPLOYMENT_URL" > /tmp/sts.json;
+    curl -s --cacert ${CACERT} --header "Authorization: Bearer $TOKEN" -X GET "DEPLOYMENT_URL" > /tmp/ds.json;
+{{- end }}
