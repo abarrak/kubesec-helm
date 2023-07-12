@@ -23,11 +23,13 @@ helm install kubesec-scanner kubesec/kubesec --version 1.0.0
 To run in job mode (1 time basis):
 
 ```bash
+helm install kubesec-scanner kubesec/kubesec --set mode=job
 ```
 
 To run in cronjob periodically:
 
 ```bash
+helm install kubesec-scanner kubesec/kubesec --set mode=cron
 ```
 
 ## Roadmap
