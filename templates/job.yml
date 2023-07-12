@@ -36,17 +36,13 @@ spec:
               value: https://kubernetes.default.svc
             - key: SERVICEACCOUNT
               value: /var/run/secrets/kubernetes.io/serviceaccount
-          command: ["sh", "-"]
-          args:
-            - TOKEN=$(cat ${SERVICEACCOUNT}/token)
-            - CACERT=${SERVICEACCOUNT}/ca.crt
-            - NAMESPACE={{ targetNamespace }}
-            - curl --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET ${APISERVER}/api"
+          command: ["sh", "--"]
+          args: []
           livenessProbe:
             exec:
               command:
               - kubesec
-              - -hel
+              - --help
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       restartPolicy: Never

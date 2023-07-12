@@ -1,0 +1,18 @@
+apiVersion: v1
+entries:
+  kubesec:
+  - apiVersion: v2
+    appVersion: v2.13.0
+    created: "2023-07-11T20:26:47.216831+03:00"
+    description: A Helm chart for kubesec utility. Supports both server and on demand
+      modes.
+    digest: 058455d15372b6dcaad3e0ac6577a0234a3cd9725f8961f0dcfb79f49fc1dd4f
+    maintainers:
+    - name: Abdullah Barrak
+      url: github.com/abarrak
+    name: kubesec
+    type: application
+    urls:
+    - https://abarrak.github.io/kubesec/kubesec-1.0.0.tgz
+    version: 1.0.0
+generated: "2023-07-11T20:26:47.216142+03:00"
