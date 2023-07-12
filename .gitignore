@@ -1,4 +1,1 @@
-# Chart dependencies
-**/charts/*.tgz
-*.tgz
 .vscode/
