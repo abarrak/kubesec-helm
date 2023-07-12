@@ -13,6 +13,6 @@ entries:
     name: kubesec
     type: application
     urls:
-    - https://abarrak.github.io/kubesec/kubesec-1.0.0.tgz
+    - https://abarrak.github.io/kubesec-helm/charts/kubesec-1.0.0.tgz
     version: 1.0.0
 generated: "2023-07-11T20:26:47.216142+03:00"
