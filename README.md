@@ -17,7 +17,7 @@ Supports 3 modes to run the scanner: server, job, and cronjob.
 
 ```bash
 helm repo add kubesec https://abarrak.github.io/kubesec-helm
-helm install kubesec-scanner kubesec/kubesec --version 1.1.0
+helm install kubesec-scanner kubesec/kubesec --version 1.0.0
 ```
 
 To run in job mode (1 time basis):
