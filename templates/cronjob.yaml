@@ -1,2 +1,82 @@
 {{- if eq .Values.mode "cron" -}}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "kubesec.fullname" . }}
+  labels:
+    {{- include "kubesec.labels" . | nindent 4 }}
+spec:
+  schedule: {{ .Values.modeOptions.schedule }}
+  {{- if hasKey .Values "suspend" }}
+  suspend: {{ .Values.modeOptions.suspend }}
+  {{- end }}
+  {{- if .Values.modeOptions.timezone }}
+  timeZone: {{ .Values.modeOptions.timezone | quote }}
+  {{- end }}
+  concurrencyPolicy: {{ .Values.modeOptions.concurrencyPolicy }}
+  failedJobsHistoryLimit: {{ .Values.modeOptions.failedJobsHistoryLimit }}
+  successfulJobsHistoryLimit: {{ .Values.modeOptions.successfulJobsHistoryLimit }}
+  {{- if .Values.modeOptions.startingDeadlineSeconds }}
+  startingDeadlineSeconds: {{ .Values.modeOptions.startingDeadlineSeconds }}
+  {{- end }}
+  jobTemplate:
+    spec:
+      {{- if .Values.modeOptions.backoffLimit }}
+      backoffLimit: {{ .Values.modeOptions.backoffLimit }}
+      {{- end }}
+      {{- if .Values.modeOptions.ttlSecondsAfterFinished }}
+      ttlSecondsAfterFinished: {{ .Values.modeOptions.ttlSecondsAfterFinished }}
+      {{- end }}
+      template:
+        metadata:
+          {{- with .Values.podAnnotations }}
+          annotations:
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+        spec:
+          {{- with .Values.imagePullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          serviceAccountName: {{ include "kubesec.serviceAccountName" . }}
+          securityContext:
+            {{- toYaml .Values.podSecurityContext | nindent 12 }}
+          restartPolicy: {{ .Values.modeOptions.restartPolicy }}
+          containers:
+            - name: {{ .Chart.Name }}
+              securityContext:
+                {{- toYaml .Values.securityContext | nindent 16 }}
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              {{- with .Values.envVars }}
+              env:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+              command: ["/bin/sh"]
+              args:
+                - -c
+                - >-
+{{ .Values.modeOptions.kubesecCommand | indent 18 }}
+              resources:
+                {{- toYaml .Values.resources | nindent 16 }}
+              volumeMounts:
+              {{- with .Values.volumeMounts }}
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+          {{- with .Values.volumes }}
+          volumes:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
 {{- end }}
