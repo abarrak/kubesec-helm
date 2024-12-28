@@ -4,7 +4,7 @@ description: A Helm chart for kubesec utility. Supports both server and on deman
 
 type: application
 
-version: "1.0.1"
+version: "1.1.0"
 appVersion: "v2.13.0"
 
 maintainers:

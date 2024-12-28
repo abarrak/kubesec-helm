@@ -32,21 +32,9 @@ To run in cronjob periodically:
 helm install kubesec-scanner kubesec/kubesec --set mode=cron
 ```
 
-## Roadmap
-
-- [ ] Add [pagination support for large clusters](https://kubernetes.io/docs/reference/using-api/api-concepts/#retrieving-large-results-sets-in-chunks) when running on job modes.
-- [ ] Add chart coverage *"helm unittest"*.
-
 ## Support
 
 You can complement the chart with [the UI from here]() to visualize and analyze reports.
-
-In case the work here, you can share me a cup of coffee ✌️
-
-<a href="https://www.buymeacoffee.com/abarrak" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 50px !important;width: 170px !important;" >
-</a>
-
 
 ## License
 

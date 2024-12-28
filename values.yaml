@@ -12,6 +12,24 @@ modeOptions:
   targetNamespace: []
   # Defaults to once daily at 6 AM.
   schedule: "0 6 * * *"
+  suspend: false
+
+  # Forbid or allow simultaneous run for the jobs.
+  concurrencyPolicy: Allow
+
+  timeZone: ""
+  backoffLimit: 3
+  failedJobsHistoryLimit: 5
+  successfulJobsHistoryLimit: 5
+  startingDeadlineSeconds: ""
+
+  # Time to keep pods afer the job successful run.
+  # Useful for reference and logs.
+  ttlSecondsAfterFinished: "518400"
+
+  restartPolicy: OnFailure
+
+  kubesecCommand: kubesec --help
 
 replicaCount: 1
 
@@ -55,9 +73,6 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 resources: {}
 

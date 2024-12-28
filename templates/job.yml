@@ -9,6 +9,12 @@ spec:
   selector:
     matchLabels:
       {{- include "kubesec.selectorLabels" . | nindent 6 }}
+  {{- if .Values.modeOptions.backoffLimit }}
+  backoffLimit: {{ .Values.modeOptions.backoffLimit }}
+  {{- end }}
+  {{- if .Values.modeOptions.ttlSecondsAfterFinished }}
+  ttlSecondsAfterFinished: {{ .Values.modeOptions.ttlSecondsAfterFinished }}
+  {{- end }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -36,7 +42,11 @@ spec:
               value: https://kubernetes.default.svc
             - key: SERVICEACCOUNT
               value: /var/run/secrets/kubernetes.io/serviceaccount
-          command: ["sh", "--"]
+          command: ["/bin/sh"]
+          args:
+            - -c
+            - >-
+{{ .Values.modeOptions.kubesecCommand | indent 14 }}
           args: []
           livenessProbe:
             exec:
@@ -45,7 +55,7 @@ spec:
               - --help
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      restartPolicy: Never
+      restartPolicy: {{ .Values.modeOptions.restartPolicy }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
