@@ -3,7 +3,21 @@ entries:
   kubesec:
   - apiVersion: v2
     appVersion: v2.13.0
-    created: "2023-07-13T02:52:41.879949+03:00"
+    created: "2024-12-28T15:01:14.423845+03:00"
+    description: A Helm chart for kubesec utility. Supports both server and on demand
+      modes.
+    digest: cda79ee5d353d47300a23b8c58db163f4713a9f7dad3f68aa06f4cf066b8993b
+    maintainers:
+    - name: Abdullah Barrak
+      url: github.com/abarrak
+    name: kubesec
+    type: application
+    urls:
+    - https://www.abarrak.com/charts/kubesec-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
+    appVersion: v2.13.0
+    created: "2024-12-28T15:01:14.422324+03:00"
     description: A Helm chart for kubesec utility. Supports both server and on demand
       modes.
     digest: 3e1ba9a1b69ac2bfa3b60b261453be5df9624245a35efe74a7ab6be86d22200b
@@ -13,11 +27,11 @@ entries:
     name: kubesec
     type: application
     urls:
-    - https://abarrak.github.io/kubesec-helm/charts/kubesec-1.0.1.tgz
+    - https://www.abarrak.com/charts/kubesec-1.0.1.tgz
     version: 1.0.1
   - apiVersion: v2
     appVersion: v2.13.0
-    created: "2023-07-13T02:52:41.878809+03:00"
+    created: "2024-12-28T15:01:14.421646+03:00"
     description: A Helm chart for kubesec utility. Supports both server and on demand
       modes.
     digest: c7fa0fec2cd1de8fdd969da77b361ef66f108112252d74e7a1f1632625739fe4
@@ -27,6 +41,6 @@ entries:
     name: kubesec
     type: application
     urls:
-    - https://abarrak.github.io/kubesec-helm/charts/kubesec-1.0.0.tgz
+    - https://www.abarrak.com/charts/kubesec-1.0.0.tgz
     version: 1.0.0
-generated: "2023-07-13T02:52:41.877751+03:00"
+generated: "2024-12-28T15:01:14.42096+03:00"
